@@ -8,8 +8,8 @@ pygame.init()
 score = 0
 dead = False
 
-screen_x = 500
-screen_y = 400
+screen_x = 600
+screen_y = 500
 screen_size = (screen_x, screen_y)
 
 apple_size = 30
@@ -86,8 +86,8 @@ while is_running:
         score = 0
         dead = True
 
-    pygame.draw.rect(screen, (255, 5, 5), player_rect)
-    pygame.draw.rect(screen, (5, 255, 5), apple_rect)
+    pygame.draw.rect(screen, (5, 255, 5), player_rect)
+    pygame.draw.rect(screen, (255, 5, 5), apple_rect)
 
     text("Score: " + str(score), text_font, (255, 255, 255), 1, 1)
     if dead == True:
