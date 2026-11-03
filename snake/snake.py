@@ -23,7 +23,7 @@ player_y = random.randint(0, screen_y -player_size)
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("snake")
 
-fps = 500
+fps = 1000
 clock = pygame.time.Clock()
 
 text_font = pygame.font.SysFont("Arial", 30)
