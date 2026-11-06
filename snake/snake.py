@@ -4,26 +4,30 @@ import sys
 import time
 
 pygame.init()
+cell_size = 30
+
+screen_x = 600
+screen_y = 510
+
+player_size = cell_size
+apple_size = cell_size
+
+apple_x = random.randrange(0, screen_x, cell_size)
+apple_y = random.randrange(0, screen_y, cell_size)
+
+player_x = random.randrange(0, screen_x, cell_size)
+player_y = random.randrange(0, screen_y, cell_size)
+
 
 score = 0
 dead = False
 
-screen_x = 600
-screen_y = 500
 screen_size = (screen_x, screen_y)
-
-apple_size = 30
-apple_x = random.randint(0, screen_x -apple_size)
-apple_y = random.randint(0, screen_y -apple_size)
-
-player_size = 30
-player_x = random.randint(0, screen_x -player_size)
-player_y = random.randint(0, screen_y -player_size)
 
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("snake")
 
-fps = 500
+fps = 8
 clock = pygame.time.Clock()
 
 text_font = pygame.font.SysFont("Arial", 30)
@@ -50,20 +54,20 @@ while is_running:
         if event.type == pygame.KEYDOWN:
             if not dead:
                 if event.key == pygame.K_d:
-                    move_player_x = 3
+                    move_player_x = cell_size
                     move_player_y = 0  
 
                 if event.key == pygame.K_a:
-                    move_player_x = -3
+                    move_player_x = -cell_size
                     move_player_y = 0  
 
                 if event.key == pygame.K_w:
                     move_player_x = 0   
-                    move_player_y = -3
+                    move_player_y = -cell_size
 
                 if event.key == pygame.K_s:
                     move_player_x = 0   
-                    move_player_y = 3
+                    move_player_y = cell_size
                 
             if event.key == pygame.K_q:
                 is_running = False
@@ -77,9 +81,8 @@ while is_running:
     apple_rect = pygame.Rect(apple_x, apple_y, apple_size, apple_size)
     if not dead:
         if  player_rect.colliderect(apple_rect):
-            apple_x = random.randint(0, screen_x -apple_size)
-            apple_y = random.randint(0, screen_y -apple_size)
-            player_size += 10
+            apple_x = random.randrange(0, screen_x, cell_size)
+            apple_y = random.randrange(0, screen_y, cell_size)
             score += 1
 
     if player_rect.left < 0 or player_rect.right > screen_x or player_rect.top < 0 or player_rect.bottom > screen_y:
